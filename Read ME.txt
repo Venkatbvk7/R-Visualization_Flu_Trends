@@ -1,0 +1,31 @@
+# R Visualization
+
+1.	
+For this exercise we will use the Google Flu Trends data set. Each week begins on the Sunday (Pacific Time) indicated for the row. Data for the current week will be updated each day until Saturday (Pacific Time). The data are available in http://www.google.org/flutrends, there are weekly flu information for different countries, but we will use US data set.
+You can save the data in an object name flu.us
+flu.us <-read.table("https://www.google.org/flutrends/about/data/flu/us/data.txt",
+sep = ",", header = TRUE, skip = 11)
+.	
+
+Each row in the dataset flu.us consists of the number of flu cases in a week. Using lubridate check that each week begins with Sunday. Introduce a new object called flu.states, with the following changes:
+•	select only the state level information,
+•	remove the column United.States,
+•	rehsape the dataset such that you have one column for Date, on column with State names and one column named Value with the flu cases. (hint: you can use gather to reshape the data)
+
+
+b.Use the lubridate package to convert the variable Date into a date & time variable. Then introduce variables Month and Year of the month of the data and the year of the data and save those variables in flu.states. With this data, answer the following questions:
+•	How many flu cases were in Iowa in 2014?
+•	Which month saw the maximum number of flu cases in 2014 in Iowa?
+
+
+c.Find the number of flu cases in each month for each state for all months throughout the time frame. For that, introduce a variable Year.month derived from the Date variable such that Year.month rounds Date down to the nearest boundary of the specified time unit. Year.month should be also a date & time object. Using the ggplot2package create a timeseries plot of monthly flu cases in Iowa on the y axis and Year.month along the x axis. Define the x labels with year and month information (check scale_x_date, using 12 weeks breaks). To see the x axis labels change the text to 90 degrees. Define the xlab, ylab and the title in an informative way for this problem. 
+Comment on something interesting about these data in 2-3 sentences.
+
+
+d.Using the ggplot2 package create a seasonal plot of monthly flu cases in Iowa by mapping the number of monthly flu cases to the y axis and using Month on the x axis. Map year to colour. Connect data from the same year by lines. Label these lines (you can use geom_text) with their year information on the left (before January time point) and right (after the December point). Define the x label, y label and the title in an informative way and place the legend at the bottom. 
+Comment on something interesting about these data in 2-3 sentences.
+
+
+e. Using a polygon layer with geom_polygon plot a choropleth map of the total number of flu cases for all US states in 2014. (hint: you need to work on the State names to be able to merge the data for this plot - use the gsub function for that. Be sure to have 49 states in the result.)
+
+
